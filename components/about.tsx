@@ -19,30 +19,18 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Accounting</span>, I decided to pursue my
-        passion for programming. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
-        <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
-        </span>
-        . I am also familiar with TypeScript and Prisma. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
+        I am a proficient full-stack developer based in Sri Lanka's Southern
+        Province. Driven by a passion for technology and a relentless desire to
+        learn, I transitioned from a role as a QA engineer to pursue a career in
+        development. Currently, I am immersed in MERN stack technologies,
+        alongside Next.js and Nest.js.
       </p>
 
       <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">history and philosophy</span>. I'm also
-        learning how to play the guitar.
+        Education has played a pivotal role in shaping my journey. I hold a
+        Higher National Diploma in Information Technology from the Sri Lanka
+        Institute of Advanced Technological Education and a BEng (Hons) in
+        Software Engineering from London Metropolitan University.
       </p>
     </motion.section>
   );
