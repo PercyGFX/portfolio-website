@@ -64,22 +64,29 @@ export const projectsData = [
   {
     title: "AI Driven Job Portal",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
+      "I created a AI driven Job Portal as my university project using OpenAI",
+    tags: [
+      "React",
+      "Express.js",
+      "MySQL",
+      "Tailwind",
+      "Sequalize",
+      "OpenAI API",
+    ],
     imageUrl: corpcommentImg,
   },
   {
-    title: "rmtDev",
+    title: "Trading Platform UI",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
+      "Trading platform UI like binance created using Nextjs, Tailwind CSS & Shadcn",
+    tags: ["Next.Js", "TypeScript", "ShadCN", "Tailwind"],
     imageUrl: rmtdevImg,
   },
   {
-    title: "Word Analytics",
+    title: "CV Generator",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
+      "CV generator that user can add componants and customize it.",
+    tags: ["React", "Redux", "Tailwind", ],
     imageUrl: wordanalyticsImg,
   },
 ] as const;
