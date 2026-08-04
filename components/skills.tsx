@@ -4,49 +4,41 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { skillsData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
-import { motion } from "framer-motion";
-
-const fadeInAnimationVariants = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.05 * index,
-    },
-  }),
-};
 
 export default function Skills() {
-  const { ref } = useSectionInView("Skills");
+  const { ref } = useSectionInView("Skills", 0.4);
 
   return (
     <section
-      id="skills"
       ref={ref}
-      className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
+      id="skills"
+      className="scroll-mt-24 border-b border-line"
     >
-      <SectionHeading>My skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
-        {skillsData.map((skill, index) => (
-          <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
-            key={index}
-            variants={fadeInAnimationVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={index}
+      <SectionHeading number="03" title="Skills" />
+
+      <div>
+        {skillsData.map((group) => (
+          <div
+            key={group.category}
+            className="grid grid-cols-[minmax(0,1fr)] gap-2 border-b border-line px-4 py-6 last:border-b-0 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:gap-8 sm:px-8"
           >
-            {skill}
-          </motion.li>
+            <p className="label pt-1">{group.category}</p>
+            <p className="font-display text-lg leading-relaxed sm:text-xl">
+              {group.items.map((item, i) => (
+                <React.Fragment key={item}>
+                  <span className="whitespace-nowrap">{item}</span>
+                  {i < group.items.length - 1 && (
+                    <>
+                      {" "}
+                      <span className="px-1 text-accent">·</span>{" "}
+                    </>
+                  )}
+                </React.Fragment>
+              ))}
+            </p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

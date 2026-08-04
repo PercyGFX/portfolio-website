@@ -2,73 +2,80 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import toast from "react-hot-toast";
+import { socials } from "@/lib/data";
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contact");
+  const { ref } = useSectionInView("Contact", 0.4);
 
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
-      <SectionHeading>Contact me</SectionHeading>
+    <section ref={ref} id="contact" className="scroll-mt-24">
+      <SectionHeading number="05" title="Contact" />
 
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:isurangabtk@gmail.com">
-          isurangabtk@gmail.com
-        </a>{" "}
-        or through this form.
-      </p>
+      <div className="grid gap-10 px-4 py-10 sm:px-8 sm:py-14 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h3 className="max-w-[16ch] font-display text-3xl leading-tight sm:text-5xl">
+            Have a project in mind?{" "}
+            <em className="text-accent">Let&apos;s talk.</em>
+          </h3>
+          <p className="mt-6 max-w-[40ch] leading-relaxed text-ink/70">
+            Write me directly at{" "}
+            <a className="link-underline" href={`mailto:${socials.email}`}>
+              {socials.email}
+            </a>{" "}
+            or use the form — it lands in the same inbox.
+          </p>
+          <p className="label mt-10">
+            Response time — usually within 24 hours
+          </p>
+        </div>
 
-      <form
-        className="mt-10 flex flex-col dark:text-black"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
+        <form
+          className="flex flex-col"
+          action={async (formData) => {
+            const { error } = await sendEmail(formData);
 
-          if (error) {
-            toast.error(error);
-            return;
-          }
+            if (error) {
+              toast.error(error);
+              return;
+            }
 
-          toast.success("Email sent successfully!");
-        }}
-      >
-        <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="senderEmail"
-          type="email"
-          required
-          maxLength={500}
-          placeholder="Your email"
-        />
-        <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="message"
-          placeholder="Your message"
-          required
-          maxLength={5000}
-        />
-        <SubmitBtn />
-      </form>
-    </motion.section>
+            toast.success("Email sent successfully!");
+          }}
+        >
+          <label className="label" htmlFor="senderEmail">
+            Your email
+          </label>
+          <input
+            id="senderEmail"
+            className="mt-2 border-b border-line bg-transparent pb-3 outline-none transition-colors placeholder:text-ink/30 focus:border-accent"
+            name="senderEmail"
+            type="email"
+            required
+            maxLength={500}
+            placeholder="you@example.com"
+          />
+
+          <label className="label mt-8" htmlFor="message">
+            Message
+          </label>
+          <textarea
+            id="message"
+            className="mt-2 h-40 resize-none border-b border-line bg-transparent pb-3 outline-none transition-colors placeholder:text-ink/30 focus:border-accent"
+            name="message"
+            placeholder="What are we building?"
+            required
+            maxLength={5000}
+          />
+
+          <div className="mt-8">
+            <SubmitBtn />
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }

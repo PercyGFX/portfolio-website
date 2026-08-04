@@ -1,13 +1,17 @@
 import React from "react";
 
 type SectionHeadingProps = {
-  children: React.ReactNode;
+  number: string;
+  title: string;
 };
 
-export default function SectionHeading({ children }: SectionHeadingProps) {
+export default function SectionHeading({ number, title }: SectionHeadingProps) {
   return (
-    <h2 className="text-3xl font-medium capitalize mb-8 text-center">
-      {children}
-    </h2>
+    <div className="flex items-baseline gap-4 border-b border-line px-4 py-5 sm:px-8">
+      <span className="font-mono text-[0.75rem] tracking-[0.2em] text-accent">
+        {number}
+      </span>
+      <h2 className="font-display text-3xl sm:text-4xl">{title}</h2>
+    </div>
   );
 }

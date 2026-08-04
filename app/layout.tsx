@@ -1,18 +1,32 @@
 import Header from "@/components/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
 
 export const metadata = {
-  title: "Kelum Isuranga | Personal Portfolio",
+  title: "Kelum Isuranga — Software Engineer",
   description:
-    "Kelum Isuranga is a passionate Full-Stack developer specializing in MERN Stack.",
+    "Full-stack engineer specializing in Go and Node.js backend systems for production iGaming platforms. Based in Sri Lanka.",
 };
 
 export default function RootLayout({
@@ -21,21 +35,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
-      <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
-      >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
-
+    <html
+      lang="en"
+      className={`!scroll-smooth ${fraunces.variable} ${inter.variable} ${plexMono.variable}`}
+    >
+      <body className="bg-paper font-sans text-ink antialiased">
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
+            <div className="mx-auto min-h-screen max-w-[76rem] border-x border-line">
+              <Header />
+              {children}
+              <Footer />
+            </div>
 
-            <Toaster position="top-right" />
-            <ThemeSwitch />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  borderRadius: "0",
+                  border: "1px solid rgb(var(--ink) / 0.15)",
+                  background: "rgb(var(--paper))",
+                  color: "rgb(var(--ink))",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.8rem",
+                },
+              }}
+            />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>

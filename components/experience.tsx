@@ -2,57 +2,50 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
 import { experiencesData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
-import { useTheme } from "@/context/theme-context";
 
 export default function Experience() {
-  const { ref } = useSectionInView("Experience");
-  const { theme } = useTheme();
+  const { ref } = useSectionInView("Experience", 0.2);
 
   return (
-    <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeading>My experience</SectionHeading>
-      <VerticalTimeline lineColor="">
-        {experiencesData.map((item, index) => (
-          <React.Fragment key={index}>
-            <VerticalTimelineElement
-              contentStyle={{
-                background:
-                  theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.05)",
-                boxShadow: "none",
-                border: "1px solid rgba(0, 0, 0, 0.05)",
-                textAlign: "left",
-                padding: "1.3rem 2rem",
-              }}
-              contentArrowStyle={{
-                borderRight:
-                  theme === "light"
-                    ? "0.4rem solid #9ca3af"
-                    : "0.4rem solid rgba(255, 255, 255, 0.5)",
-              }}
-              date={item.date}
-              icon={item.icon}
-              iconStyle={{
-                background:
-                  theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
-                fontSize: "1.5rem",
-              }}
-            >
-              <h3 className="font-semibold capitalize">{item.title}</h3>
-              <p className="font-normal !mt-0">{item.location}</p>
-              <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
-                {item.description}
-              </p>
-            </VerticalTimelineElement>
-          </React.Fragment>
+    <section
+      ref={ref}
+      id="experience"
+      className="scroll-mt-24 border-b border-line"
+    >
+      <SectionHeading number="04" title="Experience" />
+
+      <div>
+        {experiencesData.map((item) => (
+          <article
+            key={`${item.company}-${item.date}`}
+            className="grid gap-3 border-b border-line px-4 py-8 last:border-b-0 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,14rem)_1fr] lg:gap-8"
+          >
+            <p className="font-mono text-[0.75rem] uppercase tracking-[0.15em] text-ink/50 lg:pt-1.5">
+              {item.date}
+            </p>
+
+            <div>
+              <h3 className="font-display text-xl sm:text-2xl">
+                {item.role}
+                <span className="text-ink/50"> — {item.company}</span>
+              </h3>
+              <ul className="mt-4 max-w-[65ch] space-y-2">
+                {item.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex gap-3 leading-relaxed text-ink/70"
+                  >
+                    <span className="mt-[0.05rem] shrink-0 text-accent">—</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
         ))}
-      </VerticalTimeline>
+      </div>
     </section>
   );
 }
