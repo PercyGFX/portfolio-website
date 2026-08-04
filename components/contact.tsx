@@ -1,81 +1,59 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
-import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import toast from "react-hot-toast";
 import { socials } from "@/lib/data";
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contact", 0.4);
-
   return (
-    <section ref={ref} id="contact" className="scroll-mt-24">
-      <SectionHeading number="05" title="Contact" />
+    <section className="mt-16">
+      <h2 className="text-lg font-semibold tracking-tight">Contact</h2>
 
-      <div className="grid gap-10 px-4 py-10 sm:px-8 sm:py-14 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <h3 className="max-w-[16ch] font-display text-3xl leading-tight sm:text-5xl">
-            Have a project in mind?{" "}
-            <em className="text-accent">Let&apos;s talk.</em>
-          </h3>
-          <p className="mt-6 max-w-[40ch] leading-relaxed text-ink/70">
-            Write me directly at{" "}
-            <a className="link-underline" href={`mailto:${socials.email}`}>
-              {socials.email}
-            </a>{" "}
-            or use the form — it lands in the same inbox.
-          </p>
-          <p className="label mt-10">
-            Response time — usually within 24 hours
-          </p>
-        </div>
-
-        <form
-          className="flex flex-col"
-          action={async (formData) => {
-            const { error } = await sendEmail(formData);
-
-            if (error) {
-              toast.error(error);
-              return;
-            }
-
-            toast.success("Email sent successfully!");
-          }}
+      <p className="mt-4 text-[15px] leading-relaxed text-ink/70">
+        Write me at{" "}
+        <a
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={`mailto:${socials.email}`}
         >
-          <label className="label" htmlFor="senderEmail">
-            Your email
-          </label>
-          <input
-            id="senderEmail"
-            className="mt-2 border-b border-line bg-transparent pb-3 outline-none transition-colors placeholder:text-ink/30 focus:border-accent"
-            name="senderEmail"
-            type="email"
-            required
-            maxLength={500}
-            placeholder="you@example.com"
-          />
+          {socials.email}
+        </a>{" "}
+        or use the form below.
+      </p>
 
-          <label className="label mt-8" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            className="mt-2 h-40 resize-none border-b border-line bg-transparent pb-3 outline-none transition-colors placeholder:text-ink/30 focus:border-accent"
-            name="message"
-            placeholder="What are we building?"
-            required
-            maxLength={5000}
-          />
+      <form
+        className="mt-6 flex flex-col gap-3"
+        action={async (formData) => {
+          const { error } = await sendEmail(formData);
 
-          <div className="mt-8">
-            <SubmitBtn />
-          </div>
-        </form>
-      </div>
+          if (error) {
+            toast.error(error);
+            return;
+          }
+
+          toast.success("Email sent successfully!");
+        }}
+      >
+        <input
+          className="rounded-md border border-line bg-transparent px-3 py-2 text-[15px] outline-none transition-colors placeholder:text-ink/40 focus:border-accent"
+          name="senderEmail"
+          type="email"
+          required
+          maxLength={500}
+          placeholder="Your email"
+        />
+        <textarea
+          className="h-36 resize-none rounded-md border border-line bg-transparent px-3 py-2 text-[15px] outline-none transition-colors placeholder:text-ink/40 focus:border-accent"
+          name="message"
+          placeholder="Your message"
+          required
+          maxLength={5000}
+        />
+        <div>
+          <SubmitBtn />
+        </div>
+      </form>
     </section>
   );
 }

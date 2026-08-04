@@ -1,47 +1,25 @@
-"use client";
-
 import React from "react";
-import SectionHeading from "./section-heading";
 import { experiencesData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
 
 export default function Experience() {
-  const { ref } = useSectionInView("Experience", 0.2);
-
   return (
-    <section
-      ref={ref}
-      id="experience"
-      className="scroll-mt-24 border-b border-line"
-    >
-      <SectionHeading number="04" title="Experience" />
+    <section className="mt-16">
+      <h2 className="text-lg font-semibold tracking-tight">Experience</h2>
 
-      <div>
+      <div className="mt-6 space-y-8">
         {experiencesData.map((item) => (
           <article
             key={`${item.company}-${item.date}`}
-            className="grid gap-3 border-b border-line px-4 py-8 last:border-b-0 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,14rem)_1fr] lg:gap-8"
+            className="grid gap-1 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
           >
-            <p className="font-mono text-[0.75rem] uppercase tracking-[0.15em] text-ink/50 lg:pt-1.5">
-              {item.date}
-            </p>
-
+            <p className="text-sm text-ink/50 sm:pt-0.5">{item.date}</p>
             <div>
-              <h3 className="font-display text-xl sm:text-2xl">
-                {item.role}
-                <span className="text-ink/50"> — {item.company}</span>
+              <h3 className="font-medium">
+                {item.role} · <span className="text-ink/70">{item.company}</span>
               </h3>
-              <ul className="mt-4 max-w-[65ch] space-y-2">
-                {item.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex gap-3 leading-relaxed text-ink/70"
-                  >
-                    <span className="mt-[0.05rem] shrink-0 text-accent">—</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-ink/70">
+                {item.summary}
+              </p>
             </div>
           </article>
         ))}

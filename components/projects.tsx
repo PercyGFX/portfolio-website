@@ -1,24 +1,22 @@
-"use client";
-
 import React from "react";
-import SectionHeading from "./section-heading";
 import { projectsData } from "@/lib/data";
-import Project from "./project";
-import { useSectionInView } from "@/lib/hooks";
 
 export default function Projects() {
-  const { ref } = useSectionInView("Projects", 0.3);
-
   return (
-    <section
-      ref={ref}
-      id="projects"
-      className="scroll-mt-24 border-b border-line"
-    >
-      <SectionHeading number="02" title="Selected Projects" />
-      <div>
-        {projectsData.map((project, index) => (
-          <Project key={project.title} index={index} {...project} />
+    <section className="mt-16">
+      <h2 className="text-lg font-semibold tracking-tight">Projects</h2>
+
+      <div className="mt-6 space-y-7">
+        {projectsData.map((project) => (
+          <article key={project.title}>
+            <h3 className="font-medium">{project.title}</h3>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-ink/70">
+              {project.description}
+            </p>
+            <p className="mt-1.5 font-mono text-xs text-ink/50">
+              {project.tags.join(" · ")}
+            </p>
+          </article>
         ))}
       </div>
     </section>

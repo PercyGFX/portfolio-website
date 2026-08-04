@@ -3,62 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --paper: 250 246 238;
-  --ink: 24 20 14;
-  --accent: 232 73 15;
+  --paper: 255 255 255;
+  --ink: 23 23 23;
+  --accent: 217 70 16;
 }
 
 html.dark {
-  --paper: 20 18 16;
-  --ink: 236 231 221;
-  --accent: 255 94 31;
+  --paper: 10 10 10;
+  --ink: 235 235 235;
+  --accent: 255 107 43;
 }
 
 ::selection {
   background: rgb(var(--accent));
   color: rgb(var(--paper));
-}
-
-html {
-  scrollbar-color: rgb(var(--ink) / 0.3) transparent;
-}
-
-/* entrance animation — pure CSS so content appears even before/without JS */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.reveal {
-  animation: fade-up 0.6s ease-out both;
-}
-.reveal-1 {
-  animation-delay: 0.08s;
-}
-.reveal-2 {
-  animation-delay: 0.16s;
-}
-.reveal-3 {
-  animation-delay: 0.24s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    animation: none;
-  }
-}
-
-/* mono label used for section numbers, tags, metadata */
-.label {
-  @apply font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink/60;
-}
-
-.link-underline {
-  @apply underline decoration-ink/30 underline-offset-4 transition-colors hover:decoration-accent hover:text-accent;
 }

@@ -8,11 +8,11 @@ export default function ThemeSwitch() {
 
   return (
     <button
-      className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-ink/60 transition-colors hover:text-accent"
+      className="rounded-md border border-line px-2.5 py-1.5 font-mono text-xs text-ink/60 transition-colors hover:border-accent hover:text-accent"
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >
-      [{theme === "light" ? "dark" : "light"}]
+      {theme === "light" ? "dark" : "light"}
     </button>
   );
 }
