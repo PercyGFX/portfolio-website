@@ -1,48 +1,31 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
-import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import toast from "react-hot-toast";
+import { socials } from "@/lib/data";
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contact");
-
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
-      <SectionHeading>Contact me</SectionHeading>
+    <section className="mt-16">
+      <h2 className="text-lg font-semibold tracking-tight">Contact</h2>
 
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:isurangabtk@gmail.com">
-          isurangabtk@gmail.com
+      <p className="mt-4 text-[15px] leading-relaxed text-ink/70">
+        Write me at{" "}
+        <a
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={`mailto:${socials.email}`}
+        >
+          {socials.email}
         </a>{" "}
-        or through this form.
+        or use the form below.
       </p>
 
       <form
-        className="mt-10 flex flex-col dark:text-black"
+        className="mt-6 flex flex-col gap-3"
         action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
+          const { error } = await sendEmail(formData);
 
           if (error) {
             toast.error(error);
@@ -53,7 +36,7 @@ export default function Contact() {
         }}
       >
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="rounded-md border border-line bg-transparent px-3 py-2 text-[15px] outline-none transition-colors placeholder:text-ink/40 focus:border-accent"
           name="senderEmail"
           type="email"
           required
@@ -61,14 +44,16 @@ export default function Contact() {
           placeholder="Your email"
         />
         <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="h-36 resize-none rounded-md border border-line bg-transparent px-3 py-2 text-[15px] outline-none transition-colors placeholder:text-ink/40 focus:border-accent"
           name="message"
           placeholder="Your message"
           required
           maxLength={5000}
         />
-        <SubmitBtn />
+        <div>
+          <SubmitBtn />
+        </div>
       </form>
-    </motion.section>
+    </section>
   );
 }

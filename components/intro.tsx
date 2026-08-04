@@ -1,116 +1,68 @@
-"use client";
-
-import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { BsArrowRight, BsLinkedin } from "react-icons/bs";
-import { HiDownload } from "react-icons/hi";
-import { FaGithubSquare } from "react-icons/fa";
-import { useSectionInView } from "@/lib/hooks";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import { socials } from "@/lib/data";
+import ThemeSwitch from "./theme-switch";
 
 export default function Intro() {
-  const { ref } = useSectionInView("Home", 0.5);
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
-
   return (
-    <section
-      ref={ref}
-      id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
-    >
-      <div className="flex items-center justify-center">
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "tween",
-              duration: 0.2,
-            }}
-          >
-            <Image
-              src="/passport.jpg"
-              alt="Ricardo portrait"
-              width="192"
-              height="192"
-              quality="95"
-              priority={true}
-              className="h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
-            />
-          </motion.div>
-
-          <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 125,
-              delay: 0.1,
-              duration: 0.7,
-            }}
-          ></motion.span>
+    <section>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Kelum Isuranga
+          </h1>
+          <p className="mt-1 text-ink/60">
+            Software Engineer · Southern Province, Sri Lanka
+          </p>
         </div>
+        <ThemeSwitch />
       </div>
 
-      <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <span className="font-bold">Hello, I'm Kelum Isuranga.</span> I'm a{" "}
-        <span className="font-bold">passionate Full-Stack developer</span>{" "}
-        <span className="font-bold">specializing in</span> MERN Stack.
-      </motion.h1>
+      <div className="mt-8 space-y-4 leading-relaxed text-ink/80">
+        <p>
+          Full-stack engineer with 3+ years of experience and a strong
+          foundation in the MERN stack, now specializing in Go and Node.js
+          backend systems for production iGaming platforms serving social
+          casino products. Built a blockchain project from the ground up, with
+          experience in event-driven architecture and crypto payment systems —
+          alongside KYC/AML and geolocation compliance for regulated markets.
+        </p>
+        <p>
+          Leverages AI-driven development practices to accelerate delivery and
+          code quality. Skilled in cloud infrastructure and DevOps, with
+          hands-on experience across Azure, DigitalOcean, and AWS, and CI/CD
+          pipeline automation.
+        </p>
+      </div>
 
-      <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-        }}
-      >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{" "}
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link>
-
+      <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
         <a
-          className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="https://drive.google.com/file/d/1Hu6XKVOWWHVzUUsOWzvq_87w1_3A3Pmp/view?usp=drive_link"
-          target="_blank"
-          download
-        >
-          Download CV{" "}
-          <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://www.linkedin.com/in/kelum-isuranga/"
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={socials.github}
           target="_blank"
         >
-          <BsLinkedin />
+          GitHub
         </a>
-
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/PercyGFX"
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={socials.linkedin}
           target="_blank"
         >
-          <FaGithubSquare />
+          LinkedIn
         </a>
-      </motion.div>
+        <a
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={socials.cv}
+          target="_blank"
+        >
+          Résumé
+        </a>
+        <a
+          className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          href={`mailto:${socials.email}`}
+        >
+          {socials.email}
+        </a>
+      </div>
     </section>
   );
 }

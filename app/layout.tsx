@@ -1,18 +1,58 @@
-import Header from "@/components/header";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import ActiveSectionContextProvider from "@/context/active-section-context";
-import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
+import { Geist, Geist_Mono } from "next/font/google";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
-export const metadata = {
-  title: "Kelum Isuranga | Personal Portfolio",
-  description:
-    "Kelum Isuranga is a passionate Full-Stack developer specializing in MERN Stack.",
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
+
+import type { Metadata } from "next";
+
+const siteUrl = "https://kelum.me";
+const title = "Kelum Isuranga — Software Engineer";
+const description =
+  "Full-stack engineer specializing in Go and Node.js backend systems for production iGaming platforms. Experienced with Kafka event streaming, crypto payments, and KYC/AML compliance. Based in Sri Lanka.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  authors: [{ name: "Kelum Isuranga", url: siteUrl }],
+  creator: "Kelum Isuranga",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Kelum Isuranga",
+    locale: "en_US",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -21,22 +61,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
-      <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
-      >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
-
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="bg-paper font-sans text-ink antialiased">
         <ThemeContextProvider>
-          <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
+          {children}
 
-            <Toaster position="top-right" />
-            <ThemeSwitch />
-          </ActiveSectionContextProvider>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                borderRadius: "6px",
+                border: "1px solid rgb(var(--ink) / 0.12)",
+                background: "rgb(var(--paper))",
+                color: "rgb(var(--ink))",
+                fontSize: "0.85rem",
+              },
+            }}
+          />
         </ThemeContextProvider>
       </body>
     </html>

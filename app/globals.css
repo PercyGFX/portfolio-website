@@ -2,14 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+:root {
+  --paper: 255 255 255;
+  --ink: 23 23 23;
+  --accent: 217 70 16;
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+  --paper: 10 10 10;
+  --ink: 235 235 235;
+  --accent: 255 107 43;
 }
 
-.borderBlack {
-  @apply border border-black/10;
+::selection {
+  background: rgb(var(--accent));
+  color: rgb(var(--paper));
 }
