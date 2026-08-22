@@ -38,6 +38,18 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "Layer-1 Blockchain",
+    description:
+      "Built a Layer-1 blockchain in Go from the ground up, implementing BFT consensus, post-quantum cryptography, and PebbleDB-based state storage.",
+    tags: ["Go", "libp2p", "PebbleDB"],
+  },
+  {
+    title: "Social Casino Platform",
+    description:
+      "A production iGaming platform handling 5000+ concurrent users, built on an event-driven microservices architecture with US-regulated compliance (KYC/AML, geolocation) included.",
+    tags: ["Go", "Next.js", "Kafka", "Redis", "Microservices"],
+  },
+  {
     title: "AI-Powered Trading Bot",
     description:
       "An automated crypto trading bot that pulls live market data from Binance and uses Gemini and DeepSeek models to analyze signals and drive trade decisions.",
@@ -48,18 +60,6 @@ export const projectsData = [
     description:
       "A job portal that matches candidates to roles using OpenAI — built end-to-end as my university capstone project.",
     tags: ["React", "Express.js", "MySQL", "OpenAI API"],
-  },
-  {
-    title: "Trading Platform UI",
-    description:
-      "A Binance-style trading interface with live order book layout and dense data views.",
-    tags: ["Next.js", "TypeScript", "ShadCN", "Tailwind"],
-  },
-  {
-    title: "CV Generator",
-    description:
-      "A drag-and-drop CV builder where users compose documents from customizable components.",
-    tags: ["React", "Redux", "Tailwind"],
   },
 ] as const;
 
